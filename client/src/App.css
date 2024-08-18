@@ -1,0 +1,257 @@
+:root {
+  --main-color: #4a65ff;
+  --press-color: #3c52ce;
+  --main-bg: #eee;
+  --sec-bg: #ccc;
+}
+body {
+  background-color: var(--sec-bg);
+  overflow-x: hidden;
+}
+header {
+  /* background-color: var(--main-color); */
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  font-size: 1.1em;
+}
+.Transparent {
+  background-color: transparent;
+}
+header nav {
+  display: flex;
+  width: 40%;
+  gap: 30px;
+}
+header nav a {
+  color: #ddd;
+  text-decoration: none;
+  transition: 200ms;
+}
+header nav a:hover {
+  color: #fff;
+}
+header nav a:first-child {
+  font-weight: bolder;
+}
+.homeSection {
+  color: white;
+  font-size: 1.4em;
+  padding: 0px 54px;
+  background: linear-gradient(90deg, var(--main-color), var(--press-color));
+  display: flex;
+  justify-content: center;
+  gap: 10%;
+  align-items: center;
+  width: 100vw;
+  height: 90vh;
+}
+.homeSection div {
+  text-align: center;
+  width: 30%;
+  /* background-color: #fff3; */
+}
+.formContainer{
+  margin: auto;
+  margin-top: 80px;
+  width: 75vw;
+  background-color: var(--main-bg);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 12px #333;
+  font-size: 1.2em;
+}
+.editFormContainer, .editNotesContainer{
+  margin: auto;
+  width: 75vw;
+  padding: 60px;
+  font-size: 1.2em;
+}
+form{
+  width: 100%;
+}
+form input,
+form button {
+  width: 100%;
+  height: 30px;
+  margin-top: 6px;
+  margin-bottom: 20px;
+}
+form button {
+  width: 10%;
+}
+.editFormContainer button{
+  width: 30%;
+}
+button {
+  background-color: var(--main-color);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 200ms;
+  height: 50px;
+}
+button:hover {
+  background-color: var(--press-color);
+}
+.myProjectsContainer {
+  margin-top: 40px;
+  padding: 20px;
+}
+.projectPreview {
+  background-color: var(--main-bg);
+  padding: 4px;
+  border-radius: 6px;
+  width: 21%;
+  min-height: 180px;
+  cursor: pointer;
+  color: black;
+  text-decoration: none;
+  transition: 200ms;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.projectPreview:hover{
+  transform: scale(1.05);
+}
+.projectDescriptionPreview{
+  height: 50%;
+}
+.newProjectButton{
+  height: 25px;
+  margin-bottom: 20px;
+}
+.projectsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1%;
+}
+.manageContainer {
+  /* display: flex; */
+  flex-direction: row;
+}
+.manageNav {
+  display: flex;
+  flex-direction: column;
+  width: 5%;
+  background-color: var(--sec-bg);
+  min-height: 100vh;
+  transition: 400ms;
+  position: fixed;
+  left: 0px;
+  padding: 12px;
+  z-index: 5;
+  /* top: 60px; */
+}
+.manageNav:hover{
+  width: 15%;
+}
+.revealText{
+  display: none;
+  opacity: 0%;
+  text-wrap: nowrap;
+}
+.manageNav:hover .revealText{
+  display: contents;
+}
+.mainManage{
+  flex-grow: 1;
+  background-color: var(--main-bg);
+  min-height: 100vh;
+}
+.navButton{
+  color: black;
+  background-color: var(--sec-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15%;
+}
+.navButton:first-child{
+  gap: 4%;
+}
+.navButton:hover{
+  color: white;
+}
+.editNotesContainer{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3%
+}
+
+.note{
+  background-color: #c6ceff;
+  box-shadow: 0px 4px 10px #919ad6;
+  border-radius: 12px;
+  width: 250px;
+  height: 250px;
+  overflow: hidden;
+}
+.handle{
+  text-align: center;
+  width: 100%;
+  height: 5px;
+  padding: 10px 0px;
+  background-color: #3333;
+}
+.note-content{
+  width: 250px;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-wrap: wrap;
+  overflow-wrap: anywhere;
+}
+.note-content:focus{
+  outline: none;
+}
+.note:has(.note-content:focus){
+  outline: 1px solid black;
+}
+.dangerButton{
+  background-color: red;
+  margin-left: 20px;
+}
+.dangerButton:hover{
+  background-color: rgb(204, 0, 0);
+}
+.modal{
+  position: fixed;
+  width: 50%;
+  height: 50%;
+  left: 25%;
+  top: 25%;
+  background-color: white;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.modal *{
+  margin: 0;
+}
+.buttonsContainer{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.cancelButton{
+  border: 1px solid black;
+  background-color: var(--main-bg);
+  color: black;
+}
+.cancelButton:hover{
+  background-color: var(--sec-bg);
+}
