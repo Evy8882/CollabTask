@@ -282,12 +282,12 @@ button:hover {
 } */
 .toDoSection{
   margin: 12px auto;
-  width: 25vw;
+  width: 70vw;
   color: white;
-  background-color: var(--main-color);
-  min-height: 400px;
+  background-color: var(--sec-bg);
+  min-height: 100px;
   border-radius: 12px;
-  padding: 16px;
+  padding: 32px 16px;
 }
 .toDoContainer{
   width: 100%;
@@ -306,6 +306,13 @@ button:hover {
   background-color: var(--light-color);
   display: flex;
   padding: 10px;
+}
+.toDoItem:hover{
+  background-color: #90a1e7;
+}
+.toDoItem:active{
+  background-color: #919ad6;
+  outline: 1px solid black;
 }
 .addTaskBtn, .cnfgTaskBtn{
   width: 40px;
