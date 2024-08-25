@@ -1,0 +1,14 @@
+<?php
+include "connect.php";
+
+$request_body = file_get_contents("php://input");
+$data = json_decode($request_body,true);
+$project = $data["project"];
+$position = 1;//$data["position"];
+
+if (isset($project) AND isset($position)){
+    $sql = "INSERT INTO `note` (`project`, `position`) VALUES ('$project', '$position')";
+    $mysqli->query($sql) or die(mysqli_error($mysqli));
+}else{
+    die("Erro ao criar nota");
+}

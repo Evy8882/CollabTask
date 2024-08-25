@@ -1,43 +1,44 @@
-import React, { useEffect } from "react";
-import { createSwapy } from 'swapy';
+import React, { useEffect, useState } from "react";
+import { NoteContent } from "./NoteContent";
+import axios from "axios";
 
 function EditNotesPage({ data = {} }) {
-
-    useEffect(() => {
-        const container = document.querySelector('.editNotesContainer')
-        const swapy = createSwapy(container, { animation: "none" })
-        swapy.onSwap(({ data }) => {
-            console.table(data);
-        })
-    })
+    const [notes, setNotes] = useState([])
     
+    useEffect(() => {
+        axios.get("http://localhost/CollabTask/server/get_notes.php?project=" + data.id)
+            .then(res => {
+                setNotes(res.data)
+                
+            })
+            .catch(err => console.log(err))
+            //eslint-disable-next-line
+    }, [])
 
     return (
         <div className="editNotesContainer">
-            <div className="slot a note-slot" data-swapy-slot="1">
-                <div className="note" data-swapy-item="a">
-                <div className="handle" data-swapy-handle></div>
-                <div className="note-content" contentEditable>
+            {
+                notes.map((item) => {
+                    return (
+                        <div className="slot a note-slot" key={item.id}>
+                            <div className="note">
+                                <div className="handle" data-swapy-handle></div>
+                                <NoteContent text={item.id} />
+                            </div>
+                        </div>
+                    )
+                })
+            }
 
-                </div>
-                </div>
+            <div className="new-note" onClick={
+                () => {
+                    axios.post("http://localhost/CollabTask/server/new_note.php", { project: data.id })
+                        .then((res) => console.log(res)).catch(err => console.log(err))
+                }
+            }>
+                + CRIAR NOVA
             </div>
-            <div className="slot a note-slot" data-swapy-slot="2">
-                <div className="note" data-swapy-item="b">
-                    <div className="handle" data-swapy-handle></div>
-                    <div className="note-content" contentEditable>
 
-                    </div>
-                </div>
-            </div>
-            <div className="slot a note-slot" data-swapy-slot="3">
-                <div className="note" data-swapy-item="c">
-                <div className="handle" data-swapy-handle></div>
-                <div className="note-content" contentEditable>
-
-                </div>
-                </div>
-            </div>
         </div>
     )
 }

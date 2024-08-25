@@ -1,6 +1,7 @@
 :root {
   --main-color: #4a65ff;
   --press-color: #3c52ce;
+  --light-color: #97a7ff;
   --main-bg: #eee;
   --sec-bg: #ccc;
 }
@@ -66,7 +67,7 @@ header nav a:first-child {
   box-shadow: 0 5px 12px #333;
   font-size: 1.2em;
 }
-.editFormContainer, .editNotesContainer{
+.editFormContainer, .editNotesContainer, .editToDoContainer{
   margin: auto;
   width: 75vw;
   padding: 60px;
@@ -193,6 +194,25 @@ button:hover {
   width: 250px;
   height: 250px;
   overflow: hidden;
+  margin-bottom: 40px;
+}
+.new-note{
+  background-color: var(--main-color);
+  box-shadow: 0px 4px 10px var(--press-color);
+  border-radius: 12px;
+  width: 250px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 200ms;
+  margin-bottom: 40px;
+}
+.new-note:hover{
+  background-color: var(--press-color);
 }
 .handle{
   text-align: center;
@@ -254,4 +274,61 @@ button:hover {
 }
 .cancelButton:hover{
   background-color: var(--sec-bg);
+}
+/* .editToDoContainer{
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+} */
+.toDoSection{
+  margin: 12px auto;
+  width: 25vw;
+  color: white;
+  background-color: var(--main-color);
+  min-height: 400px;
+  border-radius: 12px;
+  padding: 16px;
+}
+.toDoContainer{
+  width: 100%;
+  /* gap: 10px; */
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  height: 100%;
+}
+.toDoItem{
+  width: 90%;
+  margin: 5px 0;
+  border-radius: 4px;
+  color: black;
+  background-color: var(--light-color);
+  display: flex;
+  padding: 10px;
+}
+.addTaskBtn, .cnfgTaskBtn{
+  width: 40px;
+  height: 40px;
+  margin: 0 2px;
+}
+.cnfgTaskBtn{
+  background-color: gray;
+}
+.cnfgTaskBtn:hover{
+  background-color: #555;
+}
+.editToDoContainer form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* text-align: center; */
+  margin: auto;
+}
+.editToDoContainer form input{
+  width: 60%;
+  height: 38px;
+  border-radius: 4px;
+  border: none;
+  margin: 0 2px;
 }

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export const DeleteModal = ({show="hidden", values={}, children}) => {
     const navigate = useNavigate()
-    if (show != "hidden"){
+    if (show !== "hidden"){
     return (
         <div className="modal">
             <h3>Tem certeza que deseja apagar permanentemente esse projeto? Essa ação não poderá ser desfeita</h3>

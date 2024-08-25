@@ -1,6 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { DeleteModal } from "./DeleteModal";
 function EditHomePage({ data = { id: "", title: "", description: "" } }) {
     const [values, setValues] = useState({
@@ -9,8 +8,6 @@ function EditHomePage({ data = { id: "", title: "", description: "" } }) {
         description: ""
     });
     const [showDelete, setShowDelete] = useState("hidden");
-    const dialog = useRef(null);
-    const navigate = useNavigate()
     useEffect(() => {
         // console.log("rodou")
         if (data.id) {

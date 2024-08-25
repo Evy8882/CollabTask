@@ -5,11 +5,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import EditHomePage from "./EditHomePage";
 import EditNotesPage from "./EditNotesPage";
+import	EditToDoPage from "./EditToDoPage"
 
 function ManageProject() {
 
     const { id } = useParams();
-    const [data, setData] = useState();
+    const [data, setData] = useState([]);
     const [index, setIndex] = useState(1);
     const [page, setPage] = useState();
     const navigate = useNavigate();
@@ -21,6 +22,7 @@ function ManageProject() {
                 setData(res.data)
             })
             .catch((err) => console.log(err))
+            //eslint-disable-next-line
     }, [])
 
     useEffect(() => {
@@ -32,7 +34,7 @@ function ManageProject() {
                 setPage(<EditNotesPage data={data} />)
                 break;
             default:
-                setPage(null)
+                setPage(<EditToDoPage data={data} />)
                 break;
         }
     }, [index, data])
