@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { DeleteModal } from "./DeleteModal";
+import { useNavigate } from "react-router-dom";
+import { Modal } from "./Modal";
 function EditHomePage({ data = { id: "", title: "", description: "" } }) {
     const [values, setValues] = useState({
         id: "",
@@ -8,6 +9,7 @@ function EditHomePage({ data = { id: "", title: "", description: "" } }) {
         description: ""
     });
     const [showDelete, setShowDelete] = useState("hidden");
+    const navigate = useNavigate();
     useEffect(() => {
         // console.log("rodou")
         if (data.id) {
@@ -47,10 +49,21 @@ function EditHomePage({ data = { id: "", title: "", description: "" } }) {
                 />
 
                 <button type="submit">Salvar Mudanças</button>
-                <button type="button" className="dangerButton" onClick={()=>setShowDelete("show")}>Deletar Projeto</button>
-                <DeleteModal show={showDelete} values={values}>
-                <button className="cancelButton" onClick={()=>{setShowDelete("hidden")}}>Cancelar</button>
-                </DeleteModal>
+                <button type="button" className="dangerButton" onClick={() => setShowDelete("show")}>Deletar Projeto</button>
+                <Modal show={showDelete}>
+                    <h3>Tem certeza que deseja apagar permanentemente esse projeto? Essa ação não poderá ser desfeita</h3>
+                    <div className="buttonsContainer">
+                        <button type="button" className="dangerButton" onClick={() => {
+                            axios.post("http://localhost/CollabTask/server/delete_project.php", values)
+                                .then((res) => {
+                                    // console.log("Deletado com sucesso: " + res);
+                                    navigate("/my-projects")
+                                }).catch(err => console.log(err))
+                        }
+                        }>Deletar Projeto</button>
+                        <button className="cancelButton" onClick={() => { setShowDelete("hidden") }}>Cancelar</button>
+                    </div>
+                </Modal>
             </form>
         </div>
     )

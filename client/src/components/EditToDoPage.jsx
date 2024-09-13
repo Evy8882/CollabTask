@@ -48,7 +48,7 @@ function EditToDoPage({ data }) {
             newItem.index = index
             return newItem
         })
-        console.log(newItems)
+        // console.log(newItems)
         axios.put("http://localhost/CollabTask/server/edit_tasks.php", newItems)}
     }, [tasks])
 
@@ -78,7 +78,14 @@ function EditToDoPage({ data }) {
                                 ref={provided.innerRef}
                                 {...provided.droppableProps}>
                                 {tasks.map((task, index) => (
-                                    <ToDoItem id={String(task.id)} index={index} taskName={task.taskName} key={task.id} />
+                                    <ToDoItem
+                                    id={String(task.id)}
+                                    index={index}
+                                    taskName={task.taskName}
+                                    key={task.id}
+                                    done={task.done}
+                                    update={()=>{setUpdate(true)}}
+                                    />
                                 ))}
                                 {provided.placeholder}
                             </article>

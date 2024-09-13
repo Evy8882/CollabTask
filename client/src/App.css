@@ -306,6 +306,14 @@ button:hover {
   background-color: var(--light-color);
   display: flex;
   padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.done{
+  opacity: 0.8;
+  position: relative;
+  text-decoration: line-through;
 }
 .toDoItem:hover{
   background-color: #90a1e7;
@@ -313,6 +321,17 @@ button:hover {
 .toDoItem:active{
   background-color: #919ad6;
   outline: 1px solid black;
+}
+.toDoItem button{
+  width: 30px;
+  height: 30px;
+  margin: 0 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.taskActions{
+  display: flex;
 }
 .addTaskBtn, .cnfgTaskBtn{
   width: 40px;
