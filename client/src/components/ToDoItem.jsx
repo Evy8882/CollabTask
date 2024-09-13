@@ -11,6 +11,11 @@ export const ToDoItem = ({ id, index, taskName, done, update }) => {
         .then(update)
         .catch((err)=>{console.log(err)})
     }
+    function delTask(){
+        axios.post("http://localhost/CollabTask/server/delete_task.php", {id: id})
+        .then(update)
+        .catch((err)=>{console.log(err)})
+    }
 
 
     return (
@@ -23,7 +28,7 @@ export const ToDoItem = ({ id, index, taskName, done, update }) => {
                     <div className="taskActions">
                         {/* <button className="editTaskButton" title="Editar"><FontAwesomeIcon icon={faPencil}/></button> */}
                         <button className="delTaskButton" title="Concluído" onClick={complete}><FontAwesomeIcon icon={faCheck}/></button>
-                        <button className="delTaskButton dangerButton" title="Excluir"><FontAwesomeIcon icon={faXmarkCircle}/></button>
+                        <button className="delTaskButton dangerButton" title="Excluir" onClick={delTask}><FontAwesomeIcon icon={faXmarkCircle}/></button>
                     </div>
                 </div>
             )}

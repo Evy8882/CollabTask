@@ -7,5 +7,3 @@ $id = $data["id"];
 
 $sql = "DELETE FROM `projeto` WHERE `id` = '$id'";
 $mysqli->query($sql) or die(mysqli_error($mysqli));
-
-die($sql);
