@@ -2,13 +2,12 @@
 include "connect.php";
 
 $request_body = file_get_contents("php://input");
-$data = json_decode($request_body,true);
+$data = json_decode($request_body, true);
 $project = $data["project"];
-$position = 1;//$data["position"];
 
-if (isset($project) AND isset($position)){
-    $sql = "INSERT INTO `note` (`project`, `position`) VALUES ('$project', '$position')";
+if (isset($project)) {
+    $sql = "INSERT INTO `note` (`project`, `height`) VALUES ('$project', '150')";
     $mysqli->query($sql) or die(mysqli_error($mysqli));
-}else{
+} else {
     die("Erro ao criar nota");
 }

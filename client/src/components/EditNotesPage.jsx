@@ -4,42 +4,36 @@ import axios from "axios";
 
 function EditNotesPage({ data = {} }) {
     const [notes, setNotes] = useState([])
-    
+    const [update, setUpdate] = useState(true)
+
     useEffect(() => {
-        axios.get("http://localhost/CollabTask/server/get_notes.php?project=" + data.id)
-            .then(res => {
-                setNotes(res.data)
-                
-            })
-            .catch(err => console.log(err))
-            //eslint-disable-next-line
-    }, [])
+        if (update) {
+            axios.get("http://localhost/CollabTask/server/get_notes.php?project=" + data.id)
+                .then(res => {
+                    setNotes(res.data)
+                })
+                .catch(err => console.log(err))
+            setUpdate(false);
+        }
+        //eslint-disable-next-line
+    }, [update])
+
+    function newNote() {
+        axios.post("http://localhost/CollabTask/server/new_note.php", { project: data.id })
+            .then(() => setUpdate(true))
+            .catch(err => { console.log(err) })
+    }
 
     return (
-        <div className="editNotesContainer">
+        <section className="editNotesContainer">
+            <h1>Notas de trabalho</h1>
+            <button onClick={newNote}>Nova Nota</button>
             {
-                notes.map((item) => {
-                    return (
-                        <div className="slot a note-slot" key={item.id}>
-                            <div className="note">
-                                <div className="handle" data-swapy-handle></div>
-                                <NoteContent text={item.id} />
-                            </div>
-                        </div>
-                    )
-                })
+                notes.map((note) => (
+                    <NoteContent id={note.id} content={note.content} h={note.height} reset={() => setUpdate(true)} />
+                ))
             }
-
-            <div className="new-note" onClick={
-                () => {
-                    axios.post("http://localhost/CollabTask/server/new_note.php", { project: data.id })
-                        .then((res) => console.log(res)).catch(err => console.log(err))
-                }
-            }>
-                + CRIAR NOVA
-            </div>
-
-        </div>
+        </section>
     )
 }
 export default EditNotesPage

@@ -42,20 +42,26 @@ header nav a:first-child {
 }
 .homeSection {
   color: white;
-  font-size: 1.4em;
-  padding: 0px 54px;
-  background: linear-gradient(90deg, var(--main-color), var(--press-color));
+  font-size: 1.8em;
+  background: linear-gradient(180deg, var(--main-color), #2e41aa);
   display: flex;
   justify-content: center;
-  gap: 10%;
   align-items: center;
   width: 100vw;
-  height: 90vh;
+  height: 650px;
+  box-shadow: 0px 10px 12px #0004;
 }
 .homeSection div {
-  text-align: center;
+  text-align: left;
   width: 30%;
-  /* background-color: #fff3; */
+}
+.homeSection h2{
+  opacity: 0.8;
+  font-size: .8em;
+}
+.descSection{
+  font-size: 1.2em;
+  padding: 12px 8%;
 }
 .formContainer{
   margin: auto;
@@ -181,60 +187,12 @@ button:hover {
 .navButton:hover{
   color: white;
 }
-.editNotesContainer{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3%
-}
-
-.note{
-  background-color: #c6ceff;
-  box-shadow: 0px 4px 10px #919ad6;
-  border-radius: 12px;
-  width: 250px;
-  height: 250px;
-  overflow: hidden;
-  margin-bottom: 40px;
-}
-.new-note{
-  background-color: var(--main-color);
-  box-shadow: 0px 4px 10px var(--press-color);
-  border-radius: 12px;
-  width: 250px;
-  height: 250px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 200ms;
-  margin-bottom: 40px;
-}
-.new-note:hover{
-  background-color: var(--press-color);
-}
 .handle{
   text-align: center;
   width: 100%;
   height: 5px;
   padding: 10px 0px;
   background-color: #3333;
-}
-.note-content{
-  width: 250px;
-  height: 80%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-wrap: wrap;
-  overflow-wrap: anywhere;
-}
-.note-content:focus{
-  outline: none;
-}
-.note:has(.note-content:focus){
-  outline: 1px solid black;
 }
 .dangerButton{
   background-color: red;
@@ -357,4 +315,41 @@ button:hover {
   border-radius: 4px;
   border: none;
   margin: 0 2px;
+}
+.editNotesContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.editNotesContainer h1{
+  margin: 0;
+  font-size: 1.1em;
+}
+.noteArea{
+  box-sizing: border-box;
+  resize: vertical;
+  min-height: 22px;
+  width: 100%;
+  border-radius: 0 0 6px 6px;
+}
+.noteArea:not(:focus){
+  border: none;
+  box-shadow: 0 5px 5px #0004;
+}
+.noteNav{
+  box-sizing: border-box;
+  background-color: var(--light-color);
+  width: 100%;
+  height: 22px;
+  border-radius: 6px 6px 0 0;
+  display: flex;
+  justify-content: right;
+  padding: 0 12px;
+}
+.noteNavItem{
+  background-color: transparent;
+  max-height: 100%;
+  font-size: .8em;
+  display: flex;
+  align-items: center;
 }
