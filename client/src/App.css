@@ -239,6 +239,7 @@ button:hover {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  z-index: 5;
 }
 .modal *{
   margin: 0;
@@ -409,4 +410,31 @@ button:hover {
   .tools-list__item {
     width: 80%;
   }
+}
+.button-completed {
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 200ms;
+  height: max-content;
+  width: max-content;
+  aspect-ratio: 1 / 1;
+}
+
+.showCompleted-button {
+  background-color: var(--main-color);
+  color: white;
+}
+
+.showCompleted-button:hover {
+  background-color: var(--press-color);
+}
+
+.dontShowCompleted-button {
+  background-color: #eee;
+  color: black;
+}
+
+.dontShowCompleted-button:hover {
+  background-color: #ccc;
 }
