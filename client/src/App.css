@@ -48,16 +48,41 @@ header nav a:first-child {
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 650px;
-  box-shadow: 0px 10px 12px #0004;
+  min-height: 90svh;
+  padding: 20px 0;
+  flex-direction: column-reverse;
 }
+
 .homeSection div {
-  text-align: left;
-  width: 30%;
+  text-align: center;
+  width: 80%;
 }
-.homeSection h2{
+
+.homeSection h2 {
   opacity: 0.8;
-  font-size: .8em;
+  font-size: 0.8em;
+}
+
+.homeSection img {
+  width: 70vw;
+  margin: 70px 0 20px;
+}
+
+@media (min-width: 768px) {
+  .homeSection {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .homeSection div {
+    width: 30%;
+    text-align: left
+  }
+
+  .homeSection img {
+    width: 30vw;
+    margin-bottom: 0;
+  }
 }
 .descSection{
   font-size: 1.2em;
@@ -352,4 +377,36 @@ button:hover {
   font-size: .8em;
   display: flex;
   align-items: center;
+}
+.tools-list{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.tools-list__item{
+  margin: 0 4px;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 4px;
+  text-align: center;
+  background-color: #eee;
+  padding: 22px;
+  width: 22vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+@media (max-width: 768px) {
+  .tools-list {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .tools-list__item {
+    width: 80%;
+  }
 }
