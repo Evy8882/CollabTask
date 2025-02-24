@@ -7,6 +7,9 @@ $title = $data["title"];
 $description = $data["description"];
 
 if (!empty($title) and !empty($description)) {
-    $sql = "INSERT INTO `projeto` (`title`,`description`,`owner`) VALUES ('$title', '$description', '1')";
+    $stmt = $mysqli->prepare("INSERT INTO `projeto` (`title`, `description`, `owner`) VALUES (?, ?, '1')");
+    $stmt->bind_param("ss", $title, $description);
+    $stmt->execute();
+    $stmt->close();
     $mysqli->query($sql) or die(mysqli_error($mysqli));
 }

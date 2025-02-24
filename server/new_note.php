@@ -6,8 +6,10 @@ $data = json_decode($request_body, true);
 $project = $data["project"];
 
 if (isset($project)) {
-    $sql = "INSERT INTO `note` (`project`, `height`) VALUES ('$project', '150')";
-    $mysqli->query($sql) or die(mysqli_error($mysqli));
+    $stmt = $mysqli->prepare("INSERT INTO `note` (`project`, `height`) VALUES (?, '150')");
+    $stmt->bind_param("s", $project);
+    $stmt->execute() or die(mysqli_error($mysqli));
+    $stmt->close();
 } else {
     die("Erro ao criar nota");
 }

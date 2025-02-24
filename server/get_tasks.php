@@ -2,7 +2,9 @@
 include "connect.php";
 $project = $_GET["project"];
 
-$sql = "SELECT * FROM `task` WHERE `project` = '$project' ORDER BY `position` ASC";
-$result = $mysqli->query($sql);
+$stmt = $mysqli->prepare("SELECT * FROM `task` WHERE `project` = ? ORDER BY `position` ASC");
+$stmt->bind_param("s", $project);
+$stmt->execute();
+$result = $stmt->get_result();
 
 die(json_encode($result->fetch_all(MYSQLI_ASSOC)));

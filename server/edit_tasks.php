@@ -8,6 +8,8 @@ foreach ($data as $item) {
     $taskName = $item["taskName"];
     $position = $item["index"];
 
-    $sql = "UPDATE `task` SET `taskName`='$taskName', `position`='$position' WHERE `id`='$id'";
-    $mysqli->query($sql) or die(mysqli_error($mysqli));
+    $stmt = $mysqli->prepare("UPDATE `task` SET `taskName`=?, `position`=? WHERE `id`=?");
+    $stmt->bind_param("ssi", $taskName, $position, $id);
+    $stmt->execute() or die(mysqli_error($mysqli));
+    $stmt->close();
 }

@@ -6,6 +6,8 @@ $data = json_decode($request_body, true);
 $id = $data["id"];
 
 if (isset($id)){
-    $sql = "DELETE FROM `note` WHERE `id` = '$id'";
-    $mysqli->query($sql) or die($mysqli->error);
+    $stmt = $mysqli->prepare("DELETE FROM `note` WHERE `id` = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $stmt->close();
 }

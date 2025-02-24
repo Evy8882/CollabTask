@@ -8,6 +8,8 @@ $title = $data["title"];
 $description = $data["description"];
 
 if (!empty($title) AND !empty($description)) {
-    $sql = "UPDATE `projeto` SET `title`='$title', `description`='$description' WHERE `id`='$id'";
-    $mysqli->query($sql) or die(mysqli_error($mysqli));
+    $stmt = $mysqli->prepare("UPDATE `projeto` SET `title`=?, `description`=? WHERE `id`=?");
+    $stmt->bind_param("ssi", $title, $description, $id);
+    $stmt->execute() or die(mysqli_error($mysqli));
+    $stmt->close();
 }

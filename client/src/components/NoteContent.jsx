@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
@@ -6,11 +6,8 @@ import axios from "axios";
 
 export const NoteContent = ({ id, content, h, reset }) => {
     const [cont, setCont] = useState(content)
+    const [height, setHeight] = useState(h);
     const area = useRef();
-
-    useEffect(() => {
-        console.log(cont)
-    }, [cont])
 
     function delNote() {
         axios.post("http://localhost/CollabTask/server/delete_note.php", { id: id })
@@ -18,11 +15,28 @@ export const NoteContent = ({ id, content, h, reset }) => {
             .catch(err => console.log(err))
     }
 
-    function saveContent() {
-        axios.put("http://localhost/CollabTask/server/edit_note.php", { id: id, content: cont })
+    const saveContent = React.useCallback(() => {
+        const newHeight = Number(area.current.style.height.replace("px", ""));
+        setHeight(newHeight);
+        axios.put("http://localhost/CollabTask/server/edit_note.php", { id: id, content: cont, height: newHeight })
             .then(reset)
             .catch(err => console.log(err))
-    }
+    }, [id, cont, reset]);
+
+    React.useEffect(() => {
+        const observer = new MutationObserver(() => {
+            saveContent();
+        });
+
+        if (area.current) {
+            observer.observe(area.current, { attributes: true, attributeFilter: ['style'] });
+        }
+
+        return () => {
+            observer.disconnect();
+        };
+        // eslint-disable-next-line
+    }, [saveContent]);
 
     return (
         <div className="noteContent">
@@ -33,7 +47,9 @@ export const NoteContent = ({ id, content, h, reset }) => {
             <textarea className="noteArea" ref={area}
                 onChange={e => setCont(e.target.value)}
                 onBlur={saveContent}
-            >{cont}</textarea>
+                value={cont ?? ""}
+                style={{ height: height + "px" }}
+            ></textarea>
         </div>
     )
 }

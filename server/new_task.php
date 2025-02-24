@@ -8,7 +8,10 @@ $taskName = $data["taskName"];
 $position = 90;//$data["position"];
 
 if (isset($project) AND isset($position)){
-    $sql = "INSERT INTO `task` (`taskName`,`project`, `position`) VALUES ('$taskName', '$project', '$position')";
+    $stmt = $mysqli->prepare("INSERT INTO `task` (`taskName`,`project`, `position`) VALUES (?, ?, ?)");
+    $stmt->bind_param("ssi", $taskName, $project, $position);
+    $stmt->execute() or die(mysqli_error($mysqli));
+    $stmt->close();
     $mysqli->query($sql) or die(mysqli_error($mysqli));
 }else{
     die("Erro ao criar nota");

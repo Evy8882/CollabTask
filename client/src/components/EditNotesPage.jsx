@@ -10,11 +10,11 @@ function EditNotesPage({ data = {} }) {
         if (update) {
             axios.get("http://localhost/CollabTask/server/get_notes.php?project=" + data.id)
                 .then(res => {
-                    setNotes(res.data)
+                    setNotes(res.data);
                 })
                 .catch(err => console.log(err))
+            }
             setUpdate(false);
-        }
         //eslint-disable-next-line
     }, [update])
 
@@ -30,7 +30,7 @@ function EditNotesPage({ data = {} }) {
             <button onClick={newNote}>Nova Nota</button>
             {
                 notes.map((note) => (
-                    <NoteContent id={note.id} content={note.content} h={note.height} reset={() => setUpdate(true)} />
+                    <NoteContent id={note.id} key={note.id} content={note.content} h={note.height} reset={() => setUpdate(true)} />
                 ))
             }
         </section>

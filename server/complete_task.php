@@ -6,6 +6,9 @@ $data = json_decode($request_body, true);
 $id = $data["id"];
 $done = $data["done"];
 
-$sql = "UPDATE `task` SET `done`='$done' WHERE `id`='$id'";
+$stmt = $mysqli->prepare("UPDATE `task` SET `done`=? WHERE `id`=?");
+$stmt->bind_param("ii", $done, $id);
+$stmt->execute();
+$stmt->close();
 $mysqli->query($sql) or die(mysqli_error($mysqli));
 die("success");
