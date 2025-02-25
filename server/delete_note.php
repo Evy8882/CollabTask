@@ -8,6 +8,6 @@ $id = $data["id"];
 if (isset($id)){
     $stmt = $mysqli->prepare("DELETE FROM `note` WHERE `id` = ?");
     $stmt->bind_param("i", $id);
-    $stmt->execute();
+    $stmt->execute() or die(mysqli_error($mysqli));
     $stmt->close();
 }

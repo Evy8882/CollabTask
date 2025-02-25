@@ -7,6 +7,6 @@ $id = $data["id"];
 
 $stmt = $mysqli->prepare("DELETE FROM `projeto` WHERE `id` = ?");
 $stmt->bind_param("i", $id);
-$stmt->execute();
+$stmt->execute() or die($stmt->error);
 $stmt->close();
-$mysqli->query($sql) or die(mysqli_error($mysqli));
+// $mysqli->query($sql) or die(mysqli_error($mysqli));

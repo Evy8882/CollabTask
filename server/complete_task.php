@@ -8,7 +8,7 @@ $done = $data["done"];
 
 $stmt = $mysqli->prepare("UPDATE `task` SET `done`=? WHERE `id`=?");
 $stmt->bind_param("ii", $done, $id);
-$stmt->execute();
+$stmt->execute() or die($stmt->error);
 $stmt->close();
-$mysqli->query($sql) or die(mysqli_error($mysqli));
+// $mysqli->query($sql) or die(mysqli_error($mysqli));
 die("success");

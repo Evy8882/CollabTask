@@ -101,9 +101,10 @@ function EditToDoPage({ data }) {
                                 ref={provided.innerRef}
                                 {...provided.droppableProps}>
                                 {tasks.map((task, index) => (
-                                    <React.Fragment key={task.id}>
+                                    <React.Fragment>
                                         {(showCompleted || task.done === "0") ? (
                                             <ToDoItem
+                                                key={task.id}
                                                 id={String(task.id)}
                                                 index={index}
                                                 taskName={task.taskName}

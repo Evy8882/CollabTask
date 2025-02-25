@@ -6,7 +6,7 @@ import axios from "axios";
 
 export const ToDoItem = ({ id, index, taskName, done, update }) => {
     function complete() {
-        let newDone = done === "1" ? 0 : 1;
+        let newDone = done === 1 ? 0 : 1;
         axios.put("http://localhost/CollabTask/server/complete_task.php", { done: newDone, id: id })
             .then(update)
             .catch((err) => { console.log(err) })
@@ -21,7 +21,7 @@ export const ToDoItem = ({ id, index, taskName, done, update }) => {
     return (
         <Draggable draggableId={id} index={index}>
             {(provided) => (
-                <div className={done === "0" ? "toDoItem" : "toDoItem done"} ref={provided.innerRef}
+                <div className={done === 0 ? "toDoItem" : "toDoItem done"} ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}>
                     {taskName}
