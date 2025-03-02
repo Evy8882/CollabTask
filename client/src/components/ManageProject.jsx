@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faNoteSticky, faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate, useParams } from "react-router-dom";
+import Logo from "../img/icon.png";
 import axios from "axios";
 import EditHomePage from "./EditHomePage";
 import EditNotesPage from "./EditNotesPage";
@@ -44,7 +45,7 @@ function ManageProject() {
             <section className="manageContainer">
                 <section className="manageNav">
                     <button className="navButton" onClick={() => navigate("/")}>
-                        <img src="http://localhost:3000/favicon.png" alt="" width={26}/>
+                        <img src={Logo} alt="" width={26}/>
                         <div className="revealText"><b>CollabTask.com</b></div>
                     </button>
                     <button className="navButton" onClick={() => setIndex(1)}>
