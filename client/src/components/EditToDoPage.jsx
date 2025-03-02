@@ -12,6 +12,7 @@ function EditToDoPage({ data }) {
     const [update, setUpdate] = useState(true)
     const [showModal, setShowModal] = useState("hidden");
     const [showCompleted, setShowCompleted] = useState(true);
+    const [showJustFavorites, setShowJustFavorites] = useState(false);
 
     useEffect(() => {
         if (update) {
@@ -78,7 +79,7 @@ function EditToDoPage({ data }) {
                 </button>
                 <Modal show={showModal}>
                     <h3>Configurações de exibição</h3>
-                    <div style={{display: "flex", alignItems: "center"}}>
+                    <div style={{ display: "flex", alignItems: "center" }}>
                         {showCompleted ? (
                             <button className="showCompleted-button button-completed" type="button"
                                 onClick={() => setShowCompleted(false)}
@@ -89,6 +90,18 @@ function EditToDoPage({ data }) {
                             ><FontAwesomeIcon icon={faTimes} /></button>
                         )}
                         Mostrar tarefas concluídas
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                        {showJustFavorites ? (
+                            <button className="showCompleted-button button-completed" type="button"
+                                onClick={() => setShowJustFavorites(false)}
+                            ><FontAwesomeIcon icon={faCheck} /></button>
+                        ) : (
+                            <button className="dontShowCompleted-button button-completed" type="button"
+                                onClick={() => setShowJustFavorites(true)}
+                            ><FontAwesomeIcon icon={faTimes} /></button>
+                        )}
+                        Mostrar apenas tarefas favoritadas
                     </div>
                     <button className="cancelButton" onClick={() => { setShowModal("hidden") }}>Fechar</button>
                 </Modal>
@@ -102,13 +115,14 @@ function EditToDoPage({ data }) {
                                 {...provided.droppableProps}>
                                 {tasks.map((task, index) => (
                                     <React.Fragment>
-                                        {(showCompleted || task.done === "0") ? (
+                                        {(showCompleted || task.done == "0") && (showJustFavorites == false || task.favorite == "1") ? (
                                             <ToDoItem
                                                 key={task.id}
                                                 id={String(task.id)}
                                                 index={index}
                                                 taskName={task.taskName}
                                                 done={task.done}
+                                                favorite={task.favorite}
                                                 update={() => { setUpdate(true) }}
                                             />
                                         ) : null}

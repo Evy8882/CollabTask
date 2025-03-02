@@ -322,6 +322,13 @@ button:hover {
   height: 40px;
   margin: 0 2px;
 }
+.favTaskButton{
+  background-color: #ba3;
+  color: #fff;
+}
+.favorite{
+  color: #ff0;
+}
 .cnfgTaskBtn{
   background-color: gray;
 }
